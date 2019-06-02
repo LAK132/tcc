@@ -55,3 +55,5 @@ tests/asm-c-connect-sep
 tests/vla_test
 tests/hello
 tests/tests2/fred.txt
+
+*.vscode/
