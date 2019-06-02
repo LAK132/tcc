@@ -22,7 +22,9 @@
 #define _TCC_H
 
 #define _GNU_SOURCE
-#include "config.h"
+#ifndef TCC_VERSION
+# define TCC_VERSION "1.3.2"
+#endif
 
 #include <stdlib.h>
 #include <stdio.h>

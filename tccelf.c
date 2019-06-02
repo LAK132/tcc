@@ -171,7 +171,7 @@ ST_FUNC void tccelf_end_file(TCCState *s1)
             && ELFW(ST_BIND)(sym->st_info) == STB_LOCAL)
             sym->st_info = ELFW(ST_INFO)(STB_GLOBAL, ELFW(ST_TYPE)(sym->st_info));
         tr[i] = set_elf_sym(s, sym->st_value, sym->st_size, sym->st_info,
-            sym->st_other, sym->st_shndx, s->link->data + sym->st_name);
+            sym->st_other, sym->st_shndx, (const char *)(s->link->data + sym->st_name));
     }
     /* now update relocations */
     for (i = 1; i < s1->nb_sections; i++) {
@@ -2941,7 +2941,7 @@ static inline int new_undef_syms(void)
 
 static int ld_add_file_list(TCCState *s1, const char *cmd, int as_needed)
 {
-    char filename[1024], libname[1024];
+    char filename[1536], libname[1024];
     int t, group, nblibs = 0, ret = 0;
     char **libs = NULL;
 
